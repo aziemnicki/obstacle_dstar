@@ -14,8 +14,8 @@
     # -- Configurations common to the all planners --
     # base configs
     time_limit: 30000.0
-    minimum_turning_radius: 9.0
-    maximum_turning_radius: 9.0
+    minimum_turning_radius: 5.0
+    maximum_turning_radius: 5.0
     turning_radius_size: 1
     # search configs
     theta_size: 72    #144

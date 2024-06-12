@@ -144,3 +144,4 @@ private:
 
 #endif  // OBSTACLE_DSTAR__OBSTACLE_DSTAR_NODE_HPP_
 
+

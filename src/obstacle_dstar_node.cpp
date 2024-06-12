@@ -266,7 +266,11 @@ void ObstacleDstarNode::onTimer()
     else {
       is_detected = true;
       algo_->setMap(*partial_grid_);
-    //   algo_->clearNodesDstar();          
+      if (auto dstar_algo = dynamic_cast<DstarSearch*>(algo_.get())) {
+        dstar_algo->clearNodesDstar();
+      } else {
+        throw std::runtime_error("Algorithm is not DstarSearch");
+      }      
       }
   } else {
     is_detected = false;
@@ -409,3 +413,4 @@ void ObstacleDstarNode::initializePlanningAlgorithm()
 #include "rclcpp_components/register_node_macro.hpp"
 
 RCLCPP_COMPONENTS_REGISTER_NODE(obstacle_dstar::ObstacleDstarNode)
+
