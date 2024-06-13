@@ -137,8 +137,6 @@ ObstacleDstarNode::ObstacleDstarNode(const rclcpp::NodeOptions & node_options)
     trajectory_pub_ = create_publisher<Trajectory>("~/output/trajectory", qos);
     occupancy_grid_pub_ = create_publisher<OccupancyGrid>("~/output/partial_grid", qos);
 
-    markers_pub_ = create_publisher<visualization_msgs::msg::MarkerArray>("~/output/markers", rclcpp::QoS(1000));
-
   }
 
   // Timer
@@ -371,10 +369,6 @@ void ObstacleDstarNode::planTrajectory()
   const rclcpp::Time start = get_clock()->now();
   const bool result = algo_->makePlan(current_pose_.pose, goal_pose_.pose);
   const rclcpp::Time end = get_clock()->now();
-
-  visualization_msgs::msg::MarkerArray marker_array;
-  marker_array = algo_->getMarkerArray();
-  markers_pub_->publish(marker_array);
 
   if (result) {
     const size_t start_index_forward = motion_utils::findNearestIndex(input_trajectory_->points, current_pose_.pose.position);
